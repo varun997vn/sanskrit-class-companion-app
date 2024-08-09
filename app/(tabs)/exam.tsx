@@ -38,7 +38,7 @@ function getQuestion(
   const word = getRandomElement(selectedWords[gender]);
   const vibhakthi = getRandomElement(Object.keys(shabdhaManjari[gender][word]));
   const answer = isEvam
-    ? evam[gender][word]
+    ? evam[gender][word] && evam[gender][word].length > 0
       ? evam[gender][word].join(" | ")
       : "अस्य शब्दस्य एवम् न अस्ति।"
     : shabdhaManjari[gender][word][vibhakthi].join("   |   ");
