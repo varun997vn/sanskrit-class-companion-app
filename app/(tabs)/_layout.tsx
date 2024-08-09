@@ -20,10 +20,7 @@ export default function TabLayout() {
         options={{
           title: "संगठन",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
+            <TabBarIcon name={focused ? "cog" : "cog-outline"} color={color} />
           ),
         }}
       />
@@ -33,7 +30,7 @@ export default function TabLayout() {
           title: "परीक्षा",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
+              name={focused ? "rocket" : "rocket-outline"}
               color={color}
             />
           ),

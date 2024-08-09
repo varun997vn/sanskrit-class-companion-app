@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Platform, View, Text } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { useState } from "react";
 import { HelloWave } from "@/components/HelloWave";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
@@ -9,6 +9,7 @@ import ShabhaManjari from "../data/shabdha-manjari.json";
 import { useNavigation } from "@react-navigation/native";
 import { useSelectedWordsContext } from "@/components/SelectedWordsContext"; // Import the custom hook
 import { Data } from "@/app/interfaces";
+import { Colors } from "@/constants/Colors";
 
 export default function HomeScreen() {
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
@@ -58,7 +59,11 @@ export default function HomeScreen() {
       </ThemedView>
       <List.AccordionGroup>
         {Object.keys(shabdhaManjari).map((gender, index) => (
-          <List.Accordion title={gender + " " + words} id={gender} key={index}>
+          <List.Accordion
+            title={<ThemedText>{gender + " " + words}</ThemedText>}
+            id={gender}
+            key={index}
+          >
             {Object.keys(shabdhaManjari[gender]).map((word, itemIndex) => (
               <View
                 key={itemIndex}
@@ -68,23 +73,27 @@ export default function HomeScreen() {
                   status={
                     checkedItems[`${gender}-${word}`] ? "checked" : "unchecked"
                   }
+                  color={Colors.light.tabIconSelected}
                   onPress={() => handleCheckboxToggle(gender, word)}
                 />
-                <List.Item
-                  title={word}
-                  onPress={() => handleCheckboxToggle(gender, word)}
-                />
+                <ThemedText>
+                  <List.Item
+                    title={word}
+                    onPress={() => handleCheckboxToggle(gender, word)}
+                  />
+                </ThemedText>
               </View>
             ))}
           </List.Accordion>
         ))}
       </List.AccordionGroup>
       <Button
-        icon="camera"
+        icon="rocket-outline"
         mode="contained"
+        buttonColor={Colors.light.tabIconSelected}
         onPress={() => navigation.navigate("exam" as never)}
       >
-        परीक्षाम् आरभताम्।
+        <ThemedText type="button">परीक्षाम् आरभताम्।</ThemedText>
       </Button>
     </ParallaxScrollView>
   );

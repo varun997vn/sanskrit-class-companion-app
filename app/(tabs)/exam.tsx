@@ -10,6 +10,7 @@ import { useNavigation } from "@react-navigation/native";
 import ShabhaManjari from "../data/shabdha-manjari.json";
 import { Data, Word } from "@/app/interfaces";
 import Evam from "../data/evam.json";
+import { Colors } from "@/constants/Colors";
 
 let previousQuestion = "",
   previousAnswer = "";
@@ -83,11 +84,12 @@ export default function TabTwoScreen() {
           {showAnswer && <ThemedText>{answer}</ThemedText>}
           <View style={styles.buttonAnswerView}>
             <Button
-              icon="camera"
+              icon="eye"
               mode="contained"
+              buttonColor={Colors.light.tabIconSelected}
               onPress={() => setShowAnswer(true)}
             >
-              उत्तरम् पश्य
+              <ThemedText type="button">उत्तरम् पश्य</ThemedText>
             </Button>
           </View>
         </View>
@@ -99,35 +101,38 @@ export default function TabTwoScreen() {
         <View style={styles.buttonContainer}>
           <View style={styles.buttonWrapper}>
             <Button
-              icon="camera"
+              icon="cog"
               mode="contained"
+              buttonColor={Colors.light.tabIconSelected}
               onPress={() => navigation.navigate("index" as never)}
             >
-              सङ्गठन
+              <ThemedText type="button">सङ्गठन</ThemedText>
             </Button>
           </View>
           <View style={styles.buttonWrapper}>
             <Button
-              icon="camera"
+              icon="chevron-right"
               mode="contained"
+              buttonColor={Colors.light.tabIconSelected}
               onPress={() => {
                 getQuestion(sharedState, showAnswer);
                 setNewQuestionToggle(!newQuestionToggle);
                 setShowAnswer(false); // Reset answer visibility
               }}
             >
-              अग्रम्
+              <ThemedText type="button">अग्रम्</ThemedText>
             </Button>
           </View>
         </View>
       ) : (
         <View style={styles.buttonAnswerView}>
           <Button
-            icon="camera"
+            icon="cog"
             mode="contained"
+            buttonColor={Colors.light.tabIconSelected}
             onPress={() => navigation.navigate("index" as never)}
           >
-            सङ्गठन
+            <ThemedText type="button">सङ्गठन</ThemedText>
           </Button>
         </View>
       )}
